@@ -67,7 +67,7 @@ class LogsAdapter(private val onClickListener: OnClickListener) :
         holder.itemView.setOnClickListener { onClickListener.onClick(item) }
         holder.bind(item)
     }
-
+    // Setup onclickListener for Log Detail
     class OnClickListener(val clickListener: (log: DomainLog) -> Unit) {
         fun onClick(log: DomainLog) = clickListener(log)
     }
