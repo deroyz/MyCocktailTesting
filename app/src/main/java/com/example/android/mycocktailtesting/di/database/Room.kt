@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package com.example.android.mycocktailtesting.database
+package com.example.android.mycocktailtesting.di.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -95,6 +95,7 @@ abstract class DrinkDatabase : RoomDatabase() {
 private lateinit var INSTANCE: DrinkDatabase
 
 fun getDatabase(context: Context): DrinkDatabase {
+
     synchronized(DrinkDatabase::class.java) {
         if (!::INSTANCE.isInitialized) {
             INSTANCE = Room.databaseBuilder(

@@ -1,4 +1,4 @@
-package com.example.android.mycocktailtesting.network
+package com.example.android.mycocktailtesting.di.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi

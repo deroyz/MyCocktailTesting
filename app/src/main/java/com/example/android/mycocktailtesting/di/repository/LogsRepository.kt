@@ -1,9 +1,9 @@
-package com.example.android.mycocktailtesting.repository
+package com.example.android.mycocktailtesting.di.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.android.mycocktailtesting.database.DrinkDatabase
-import com.example.android.mycocktailtesting.database.asDomainModelLog
+import com.example.android.mycocktailtesting.di.database.DrinkDatabase
+import com.example.android.mycocktailtesting.di.database.asDomainModelLog
 import com.example.android.mycocktailtesting.domain.DomainLog
 import com.example.android.mycocktailtesting.domain.asDatabaseModelLog
 import kotlinx.coroutines.Dispatchers

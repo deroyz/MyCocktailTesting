@@ -1,14 +1,14 @@
-package com.example.android.mycocktailtesting.repository
+package com.example.android.mycocktailtesting.di.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.android.mycocktailtesting.database.*
+import com.example.android.mycocktailtesting.di.database.*
 import com.example.android.mycocktailtesting.domain.Drink
 import com.example.android.mycocktailtesting.domain.asDatabaseModelFavoriteDrink
-import com.example.android.mycocktailtesting.network.Network
-import com.example.android.mycocktailtesting.network.asDatabaseModelLatestDrink
-import com.example.android.mycocktailtesting.network.asDatabaseModelPopularDrink
-import com.example.android.mycocktailtesting.network.asDatabaseModelRandomDrink
+import com.example.android.mycocktailtesting.di.network.Network
+import com.example.android.mycocktailtesting.di.network.asDatabaseModelLatestDrink
+import com.example.android.mycocktailtesting.di.network.asDatabaseModelPopularDrink
+import com.example.android.mycocktailtesting.di.network.asDatabaseModelRandomDrink
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

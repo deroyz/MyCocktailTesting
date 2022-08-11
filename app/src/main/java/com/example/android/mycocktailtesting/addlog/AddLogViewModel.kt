@@ -3,9 +3,9 @@ package com.example.android.mycocktailtesting.addlog
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.android.mycocktailtesting.database.getDatabase
+import com.example.android.mycocktailtesting.di.database.getDatabase
 import com.example.android.mycocktailtesting.domain.DomainLog
-import com.example.android.mycocktailtesting.repository.LogsRepository
+import com.example.android.mycocktailtesting.di.repository.LogsRepository
 import kotlinx.coroutines.launch
 
 class AddLogViewModel(application: Application, private val logId: Int) :
