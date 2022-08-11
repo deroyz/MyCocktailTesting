@@ -35,13 +35,13 @@ private val moshi = Moshi.Builder()
 /**
  * Main entry point for network access. Call like `Network.cocktailDBService.getRandomCocktails()`
  */
-object Network{
-    // Configure retrofit to parse JSON and use coroutines
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .build()
-
-    val cocktailDBService = retrofit.create(CocktailDBService::class.java)
-}
+//object Network{
+//    // Configure retrofit to parse JSON and use coroutines
+//    private val retrofit = Retrofit.Builder()
+//        .baseUrl(BASE_URL)
+//        .addConverterFactory(MoshiConverterFactory.create(moshi))
+//        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+//        .build()
+//
+//    val cocktailDBService = retrofit.create(CocktailDBService::class.java)
+//}

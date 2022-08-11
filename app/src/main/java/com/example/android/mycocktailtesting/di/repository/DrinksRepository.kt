@@ -3,18 +3,18 @@ package com.example.android.mycocktailtesting.di.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.android.mycocktailtesting.di.database.*
+import com.example.android.mycocktailtesting.di.network.*
 import com.example.android.mycocktailtesting.domain.Drink
 import com.example.android.mycocktailtesting.domain.asDatabaseModelFavoriteDrink
-import com.example.android.mycocktailtesting.di.network.Network
-import com.example.android.mycocktailtesting.di.network.asDatabaseModelLatestDrink
-import com.example.android.mycocktailtesting.di.network.asDatabaseModelPopularDrink
-import com.example.android.mycocktailtesting.di.network.asDatabaseModelRandomDrink
+import dagger.hilt.EntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class DrinksRepository(val database: DrinkDatabase) {
+class DrinksRepository @Inject constructor(private val database: DrinkDatabase) {
 
     val filterList: List<String> = CocktailDatabaseFilter.values().map { it.value }
+    @Inject val cocktailDBService: CocktailDBService
 
     val randomDrinks: LiveData<List<Drink>> =
         Transformations.map(database.drinkDao.getRandomDrinks()) {
@@ -38,21 +38,21 @@ class DrinksRepository(val database: DrinkDatabase) {
 
     suspend fun refreshRandomDrinks() {
         withContext(Dispatchers.IO) {
-            val randomCocktails = Network.cocktailDBService.getRandomCocktails().await()
+            val randomCocktails = cocktailDBService.getRandomCocktails().await()
             database.drinkDao.insertAllRandomDrinks(*randomCocktails.asDatabaseModelRandomDrink())
         }
     }
 
     suspend fun refreshPopularDrinks() {
         withContext(Dispatchers.IO) {
-            val popularCocktails = Network.cocktailDBService.getPopularCocktails().await()
+            val popularCocktails = cocktailDBService.getPopularCocktails().await()
             database.drinkDao.insertAllPopularDrinks(*popularCocktails.asDatabaseModelPopularDrink())
         }
     }
 
     suspend fun refreshLatestDrinks() {
         withContext(Dispatchers.IO) {
-            val latestCocktails = Network.cocktailDBService.getLatestCocktails().await()
+            val latestCocktails = cocktailDBService.getLatestCocktails().await()
             database.drinkDao.insertAllLatestDrinks(*latestCocktails.asDatabaseModelLatestDrink())
         }
     }

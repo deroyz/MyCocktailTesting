@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.android.mycocktailtesting.di.database.CocktailDatabaseFilter
 import com.example.android.mycocktailtesting.di.database.DrinkDatabase
-import com.example.android.mycocktailtesting.di.database.getDatabase
+import com.example.android.mycocktailtesting.di.network.CocktailDBService
 import com.example.android.mycocktailtesting.domain.Drink
 import com.example.android.mycocktailtesting.di.repository.DrinksRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DrinksViewModel @Inject constructor(
     val database: DrinkDatabase,
+    cocktailDBService: CocktailDBService
 ) : ViewModel() {
 
     enum class CocktailApiStatus { LOADING, ERROR, DONE }
@@ -26,7 +27,7 @@ class DrinksViewModel @Inject constructor(
 //    val status: LiveData<CocktailApiStatus>
 //        get() = _status
 
-    private val drinksRepository = DrinksRepository(database)
+    private val drinksRepository = DrinksRepository(database, cocktailDBService)
 
     val filterList = MutableLiveData<List<String>>()
     val filter = MutableLiveData<CocktailDatabaseFilter>()

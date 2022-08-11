@@ -6,8 +6,10 @@ import androidx.lifecycle.*
 import com.example.android.mycocktailtesting.di.database.getDatabase
 import com.example.android.mycocktailtesting.domain.Drink
 import com.example.android.mycocktailtesting.di.repository.DrinksRepository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DetailViewModel(drink: Drink, application: Application) : AndroidViewModel(application) {
 
     private val database = getDatabase(application)
