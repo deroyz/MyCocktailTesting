@@ -3,14 +3,19 @@ package com.example.android.mycocktailtesting.drinks
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.android.mycocktailtesting.addlog.AddLogViewModel
-import com.example.android.mycocktailtesting.database.CocktailDatabaseFilter
-import com.example.android.mycocktailtesting.database.getDatabase
+import com.example.android.mycocktailtesting.di.database.CocktailDatabaseFilter
+import com.example.android.mycocktailtesting.di.database.DrinkDatabase
+import com.example.android.mycocktailtesting.di.database.getDatabase
 import com.example.android.mycocktailtesting.domain.Drink
-import com.example.android.mycocktailtesting.repository.DrinksRepository
+import com.example.android.mycocktailtesting.di.repository.DrinksRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DrinksViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class DrinksViewModel @Inject constructor(
+    val database: DrinkDatabase,
+) : ViewModel() {
 
     enum class CocktailApiStatus { LOADING, ERROR, DONE }
 
@@ -21,10 +26,9 @@ class DrinksViewModel(application: Application) : AndroidViewModel(application) 
 //    val status: LiveData<CocktailApiStatus>
 //        get() = _status
 
-    private val database = getDatabase(application)
     private val drinksRepository = DrinksRepository(database)
 
-    val filterList = MutableLiveData<List<String>>(    )
+    val filterList = MutableLiveData<List<String>>()
     val filter = MutableLiveData<CocktailDatabaseFilter>()
     val navigateToSelectedDrink = MutableLiveData<Drink>()
 
@@ -61,12 +65,3 @@ class DrinksViewModel(application: Application) : AndroidViewModel(application) 
 
 }
 
-class DrinksViewModelFactory(private val app: Application) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DrinksViewModel::class.java)) {
-            Log.e("ViewModelFactory", "DrinkViewModel Assigned")
-            return DrinksViewModel(app) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}

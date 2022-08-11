@@ -12,10 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.mycocktailtesting.R
-import com.example.android.mycocktailtesting.database.CocktailDatabaseFilter
+import com.example.android.mycocktailtesting.di.database.CocktailDatabaseFilter
 import com.example.android.mycocktailtesting.databinding.FragmentDrinksBinding
 import com.google.android.material.chip.Chip
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DrinksFragment : Fragment() {
 
     private lateinit var viewModel: DrinksViewModel
@@ -39,8 +41,7 @@ class DrinksFragment : Fragment() {
         val activity = requireNotNull(this.activity)
 
         // Setup ViewModel
-        val viewModelFactory = DrinksViewModelFactory(activity.application)
-        val viewModel = ViewModelProvider(this, viewModelFactory)[DrinksViewModel::class.java]
+        val viewModel = ViewModelProvider(this)[DrinksViewModel::class.java]
         this.viewModel = viewModel
 
         // Setup RecyclerView
@@ -72,7 +73,6 @@ class DrinksFragment : Fragment() {
         })
 
         // Setup Chip Groups for the filters
-
         viewModel.filterList.observe(viewLifecycleOwner, Observer {
 
             val chipGroup = binding.drinkFilterList

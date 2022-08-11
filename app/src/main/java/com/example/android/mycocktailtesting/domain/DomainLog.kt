@@ -2,7 +2,7 @@ package com.example.android.mycocktailtesting.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import com.example.android.mycocktailtesting.database.DatabaseLog
+import com.example.android.mycocktailtesting.di.database.DatabaseLog
 
 @Parcelize
 data class DomainLog(

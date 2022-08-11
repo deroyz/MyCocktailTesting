@@ -3,13 +3,9 @@ package com.example.android.mycocktailtesting.detail
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.example.android.mycocktailtesting.R
-import com.example.android.mycocktailtesting.database.getDatabase
-import com.example.android.mycocktailtesting.databinding.FragmentDetailBinding
+import com.example.android.mycocktailtesting.di.database.getDatabase
 import com.example.android.mycocktailtesting.domain.Drink
-import com.example.android.mycocktailtesting.repository.DrinksRepository
+import com.example.android.mycocktailtesting.di.repository.DrinksRepository
 import kotlinx.coroutines.launch
 
 class DetailViewModel(drink: Drink, application: Application) : AndroidViewModel(application) {
